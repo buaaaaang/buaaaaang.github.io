@@ -2,7 +2,7 @@
 layout: post
 title:  "First Post"
 date:   2021-05-02 17:23:35 +0900
-categories: others
+categories: Others
 ---
 
 This post is for testing

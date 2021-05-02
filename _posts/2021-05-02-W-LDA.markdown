@@ -107,8 +107,9 @@ class WAE(keras.Model):
 &nbsp;&nbsp;We noticed that layer of decoder should not use softmax function as activation function, because probability of words in certain documents is determined by linearly adding up beta value for each topics. So we modified W-LDA model to have linear layer for decoder.
 
 {% highlight ruby %}
-decoder_output = keras.layers.Dense(n_elements[0],activation="relu",kernel_constraint=keras.constraints.NonNeg(),
-                                    kernel_initializer=tf.keras.initializers.RandomUniform(minval=0.001, maxval=0.1))(decoder_input)
+decoder_output = keras.layers.Dense(n_elements[0],activation="relu",
+    kernel_constraint=keras.constraints.NonNeg(),
+    kernel_initializer=tf.keras.initializers.RandomUniform(minval=0.001, maxval=0.1))(decoder_input)
 {% endhighlight %}
 
 &nbsp;&nbsp;the modified works better on generated corpus.
