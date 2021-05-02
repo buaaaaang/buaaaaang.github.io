@@ -5,9 +5,10 @@ date:   2021-05-02 17:51:35 +0900
 categories: MachineLearning
 ---
 
-&nbsp;&nbsp;This work was done in fall of 2020, in a group study supervised by Prof. Chun at KAIST. You can see our PPT named "LDA and Wassestein LDA" on the official [lab site][lab-site]. you can see full code in https://github.com/bungbungbung/20201201-W-LDA/tree/main
+&nbsp;&nbsp;This work was done in fall of 2020, in a group study supervised by Prof. Chun at KAIST. You can see our PPT named "LDA and Wassestein LDA" on the official [lab site][lab-site]. you can see full code in [github][github-wlda]
 
 [lab-site]: https://chunhyonho.github.io/Group-study/Journal_club/
+[github-wlda]: https://github.com/bungbungbung/20201201-W-LDA/tree/main
 &nbsp;&nbsp;We implementated W-LDA proposed in Nan et al. 2019 [1]. LDA (Latent Dirichlet Allocation) is the most popular probabilistic topic model, but it is hard to use VAE directly to LDA because LDA use Direchlet distribution, which does not belong to location-scale family. This paper use WAE model proposed in [2] to make W-LDA model, that use Dirichlet prior on the latent document topic vectors.
 
 &nbsp;&nbsp;WAE in [2] is a model that can use any distribution as prior. Since the distribution may not belong to location scale family, we cannot use reparametrization trick, so WAE use deterministic encoder. Instead, in 4.3 of [1], they added big noise to document-topic vectors during training. 
