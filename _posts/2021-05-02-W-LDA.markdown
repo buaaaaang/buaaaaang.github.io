@@ -5,7 +5,7 @@ date:   2021-05-02 17:51:35 +0900
 categories: MachineLearning
 ---
 
-&nbsp;&nbsp;This work was done in fall of 2020, in a group study supervised by Prof. Chun at KAIST. You can see our PPT named "LDA and Wassestein LDA" on the official [lab site][lab-site]. you can see full code in [github][github-wlda]
+&nbsp;&nbsp;This work was done in fall of 2020, in a group study supervised by Prof. Chun at KAIST. You can see our PPT named "LDA and Wassestein LDA" on the official [lab site][lab-site]. You can see full code in [github][github-wlda].
 
 [lab-site]: https://chunhyonho.github.io/Group-study/Journal_club/
 [github-wlda]: https://github.com/bungbungbung/20201201-W-LDA/tree/main
