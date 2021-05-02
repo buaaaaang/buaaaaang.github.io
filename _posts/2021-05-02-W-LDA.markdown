@@ -5,7 +5,7 @@ date:   2021-05-02 17:51:35 +0900
 categories: MachineLearning
 ---
 
-&nbsp;&nbsp;This work was done in fall of 2020, in a group study supervised by Prof. Chun at KAIST. You can see our PPT named "LDA and Wassestein LDA" on the official [lab site][lab-site]. You can see full code in [github][github-wlda].
+&nbsp;&nbsp;This work was done in fall of 2020, in a group study supervised by Prof. Chun at KAIST. You can see our PPT named "LDA and Wassestein LDA" on the official [lab site][lab-site]. You can see full code on [github][github-wlda].
 
 [lab-site]: https://chunhyonho.github.io/Group-study/Journal_club/
 [github-wlda]: https://github.com/bungbungbung/20201201-W-LDA/tree/main
@@ -105,6 +105,10 @@ class WAE(keras.Model):
 
 ![Top10Words](/assets/2021-05-02-W-LDA/top10words.png){:class="img-responsive"}
 
+&nbsp;&nbsp;We also made T-SNE plot for latent vector for each plot. We can see that distribution of red dots (real data) and green dots (model data) become similar as epoch goes on.
+
+![Top10Words](/assets/2021-05-02-W-LDA/T-SNE.png){:class="img-responsive"}
+
 &nbsp;&nbsp;We noticed that layer of decoder should not use softmax function as activation function, because probability of words in certain documents is determined by linearly adding up beta value for each topics. So we modified W-LDA model to have linear layer for decoder.
 
 {% highlight ruby %}
@@ -124,6 +128,8 @@ decoder_output = keras.layers.Dense(n_elements[0],activation="relu",
 <p align="center">
   <img width="460" src="/assets/2021-05-02-W-LDA/corpusInfer.png">
 </p>
+
+
 
 &nbsp;&nbsp;As a result, we successfully implemented W-LDA proposed in [1], and we could modify the model to have better performance on generated corpus.
 
