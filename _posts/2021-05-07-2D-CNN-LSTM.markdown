@@ -35,7 +35,14 @@ Validation accuracy was 0.73, which is quite similar to the result of [1].
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_original_K.png">
 </p>
 
-Validation accuracy was 0
+Validation accuracy was 043, which was not as good as expected
+
+&nbsp;&nbsp;At this point, I pointed out suspicious part of this paper. The input data, which has size (128&times;251&times;1), pass through 4 LFLB layers, and become (1&times;1&times;128). Then, only way to use LSTM layer is putting reshaping layer, which makes data to be (128). This vector is just a sequence of channel of CNN, which does not contain time information, so there is no meaning of using LSTM layer. To check this, I replaced LSTM layer with two dense layers. Here is the result.
+
+<p align="center">
+  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_modified_B.png">
+</p>
+
 
 <br/>
 <br/>
