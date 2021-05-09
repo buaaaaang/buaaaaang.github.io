@@ -5,20 +5,40 @@ date:   2021-05-07 17:51:35 +0900
 categories: MachineLearning
 ---
 
-I implementated 2D CNN LSTM for SER in Zhao et al. (2019) [1]. You can see full code in [here][2Dgithub].
+&nbsp;&nbsp;I implementated 2D CNN LSTM for SER in Zhao et al. (2019) [1]. You can see full code in [here][2Dgithub].
 
 [2Dgithub]: https://github.com/buaaaaang/20210507-2D-CNN-LSTM
 
-I also implented 1D CNN LSTM [here][1Dgithub], but paper mentioned that 2D CNN LSTM network 'outperforms' the traditional approaches, so I mainly focused on 2D model. 1D model use raw audio file as data, but 2D model preprocess data with log-mel spectogram. This is why it use 2D convolution. LFLB (local feature learning block) that consists convolutionar layer, batch normalization layer, exponential linear unit layer, and max pooling layer, was used to learn local features. LSTM was used to learn global feature. And dense layer was at the end of the model.
-My goal was to apply the model to Korean speech dataset. The data was from [here][link]. It is 감정 분류를 위한 대화 음성 데이터셋 of AIHUB, but the result was not good.
+&nbsp;&nbsp;I also implented 1D CNN LSTM [here][1Dgithub], but paper mentioned that 2D CNN LSTM network 'outperforms' the traditional approaches, so I mainly focused on 2D model. 1D model use raw audio file as data, but 2D model preprocess data with log-mel spectogram. This is why it use 2D convolution. LFLB (local feature learning block) that consists convolutionar layer, batch normalization layer, exponential linear unit layer, and max pooling layer, was used to learn local features. LSTM was used to learn global feature. Dense layer was at the end of the model.
+My goal was to apply the model to Korean speech dataset. The data was from [here][link]. It is 감정 분류를 위한 대화 음성 데이터셋 of AIHUB.
 
 [1Dgithub]: https://github.com/buaaaaang/20210504-1D-CNN-LSTM
 [link]: https://aihub.or.kr/keti_data_board/language_intelligence
 
+&nbsp;&nbsp;Preprocessing was done by librosa. Result of preprocessing is data with 251 frames and 128 mel frequency bins. following picture is sample result of preprocessing
 
+<p align="center">
+  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/log_mel_sample.png">
+</p>
 
+&nbsp;&nbsp;Model was built with Keras, and hyperparamter tuning was done by KerasTuner. Here is network's training accuracy and validation accuracy on Berlin EmoDB set in speaker-dependent experiments.
 
+<p align="center">
+  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_orignal_B.png">
+</p>
 
+Validation accuracy was 0.73, which is quite similar to the result of [1].
+
+&nbsp;&nbsp;Speaker dependent experiment on Korean speech dataset was done. Here is graph of training accuracy and validation accuracy.
+
+<p align="center">
+  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_orignal_K.png">
+</p>
+
+Validation accuracy was 0
+
+<br/>
+<br/>
 
 [1] Zhao, J., Mao, X., & Chen, L. (2019). Speech emotion recognition using deep 1D & 2D CNN LSTM networks. Biomedical Signal Processing and Control, 47, 312-323.
 
