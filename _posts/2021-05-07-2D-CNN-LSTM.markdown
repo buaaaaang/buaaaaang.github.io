@@ -5,7 +5,7 @@ date:   2021-05-07 17:51:35 +0900
 categories: MachineLearning
 ---
 
-&nbsp;&nbsp;I implementated 2D CNN LSTM for SER in Zhao et al. (2019) [1]. You can see full code in [here][2Dgithub].
+&nbsp;&nbsp;I implementated 2D CNN LSTM for SER in Zhao et al. (2019) [1]. You can see full code in [here][2Dgithub]. This paper gives us intuitive model that extracts features of speech data with popular deep learning techniques: local features from CNN, and local features from RNN. 
 
 [2Dgithub]: https://github.com/buaaaaang/20210507-2D-CNN-LSTM
 
@@ -21,7 +21,7 @@ My goal was to apply the model to Korean speech dataset. The data was from [here
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/log_mel_sample.png">
 </p>
 
-&nbsp;&nbsp;Model was built with Keras, and hyperparamter tuning was done by KerasTuner. Here is network's training accuracy and validation accuracy on Berlin EmoDB set in speaker-dependent experiments.
+&nbsp;&nbsp;Model was built with Keras, and hyperparamter tuning was done by KerasTuner. In this post, we'll consider accuracy on speaker-dependent experiments. Here is network's training accuracy and validation accuracy on Berlin EmoDB set.
 
 <p align="center">
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_original_B.png">
@@ -37,7 +37,7 @@ Validation accuracy was 0.73, which is quite similar to the result of [1]. (whic
 
 Validation accuracy was 0.47, which was not as good as expected
 
-&nbsp;&nbsp;At this point, I pointed out suspicious part of this paper. The input data, which has size (128&times;251&times;1), pass through 4 LFLB layers, and become (1&times;1&times;128). Then, to connect this with LSTM layer, we should put reshape layer to change shape into (1&times;128). Here, time information is not contained anymore, so recurrent neural network is called only once. This means there is no meaning of using LSTM layer. To check this, I replaced LSTM layer with two dense layers. Here is the result when changed model was applied to Berlin EmoDB dataset.
+&nbsp;&nbsp;At this point, I pointed out suspicious part of this paper. The input data, which has size (128&times;251&times;1), pass through 4 LFLB layers, and become (1&times;1&times;128). Then, to connect this with LSTM layer,  reshape layer is needed to change shape into (1&times;128). Here, time information is not contained anymore, so recurrent neural network is called only once. This means there is no meaning of using LSTM layer. To check this, I replaced LSTM layer with two dense layers. Here is the result when changed model was applied to Berlin EmoDB dataset.
 
 <p align="center">
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_dense_B.png">
@@ -45,11 +45,13 @@ Validation accuracy was 0.47, which was not as good as expected
 
 validation accuracy wa 0.76, which is higher than the original model, showing that LSTM layer in the original model is not meaningful.
 
-&nbsp;&nbsp;To use LSTM in meaningful way, we have to conserve time information of the data. I tried to change pooling layer to have smaller pooling size on frame-axis. When this modified model was applied to Berilin EmoDB dataset, I got better result(!) then the paper. The validation accuracy increased to 0.80.
+&nbsp;&nbsp;To use LSTM in meaningful way, I have to conserve time information of the data. I tried to change pooling layer to have smaller pooling size on frame-axis. When this modified model was applied to Berilin EmoDB dataset, I got better result(!) then the paper. As you can see in the graph below, validation accuracy increased to 0.80.
 
 <p align="center">
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_modified_B.png">
 </p>
+
+I guess performance will be even more better if more detailed hyperparameter tuning is done.
 
 &nbsp;&nbsp;I applied modified model to Korean speech dataset.
 
@@ -59,11 +61,9 @@ validation accuracy wa 0.76, which is higher than the original model, showing th
 
 Validation accuracy was 0.49, which is slightly better, but still not that useful.
 
-speaker-independent
-about possibilities of model
-how to deal with korean speech data
+&nbsp;&nbsp;We may guess that model is suitable only for German, but I think that is not all. Korean speech dataset I found is too vague that even I can't distinguish some emotions. The good news is that, this data has labeled not only '1st emotion', but also 2nd, 3rd, 4th, and 5th emotions. We may use those data to characterize emotions in dimensional emotional model.
 
-
+Overall, I successfully implemented the model in the paper, and I could modify it to be better model. Also, although applying the model to Korean speech dataset was not quite successful, It gave me a chance to think of other ways to break through.
 
 <br/>
 <br/>
