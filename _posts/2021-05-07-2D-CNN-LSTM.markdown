@@ -24,7 +24,7 @@ My goal was to apply the model to Korean speech dataset. The data was from [here
 &nbsp;&nbsp;Model was built with Keras, and hyperparamter tuning was done by KerasTuner. Here is network's training accuracy and validation accuracy on Berlin EmoDB set in speaker-dependent experiments.
 
 <p align="center">
-  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_orignal_B.png">
+  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_original_B.png">
 </p>
 
 Validation accuracy was 0.73, which is quite similar to the result of [1].
@@ -32,7 +32,7 @@ Validation accuracy was 0.73, which is quite similar to the result of [1].
 &nbsp;&nbsp;Speaker dependent experiment on Korean speech dataset was done. Here is graph of training accuracy and validation accuracy.
 
 <p align="center">
-  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_orignal_K.png">
+  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_original_K.png">
 </p>
 
 Validation accuracy was 0
