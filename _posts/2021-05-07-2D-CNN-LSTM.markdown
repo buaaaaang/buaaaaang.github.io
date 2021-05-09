@@ -27,7 +27,7 @@ My goal was to apply the model to Korean speech dataset. The data was from [here
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_original_B.png">
 </p>
 
-Validation accuracy was 0.73, which is quite similar to the result of [1].
+Validation accuracy was 0.73, which is quite similar to the result of [1]. (which was 0.76)
 
 &nbsp;&nbsp;Speaker dependent experiment on Korean speech dataset was done. Here is graph of training accuracy and validation accuracy.
 
@@ -43,10 +43,25 @@ Validation accuracy was 0.47, which was not as good as expected
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_dense_B.png">
 </p>
 
-validation accuracy became higher than the original model, showing that LSTM layer in the original model is not meaningful.
+validation accuracy wa 0.76, which is higher than the original model, showing that LSTM layer in the original model is not meaningful.
 
-&nbsp;&nbsp;To use LSTM in meaningful way, we have to conserve time information of the data. I tried to change pooling layer to have a form (p&times;1). Here is the result.
+&nbsp;&nbsp;To use LSTM in meaningful way, we have to conserve time information of the data. I tried to change pooling layer to have smaller pooling size on frame-axis. When this modified model was applied to Berilin EmoDB dataset, I got better result(!) then the paper. The validation accuracy increased to 0.80.
 
+<p align="center">
+  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_modified_B.png">
+</p>
+
+&nbsp;&nbsp;I applied modified model to Korean speech dataset.
+
+<p align="center">
+  <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_modified_K.png">
+</p>
+
+Validation accuracy was 0.49, which is slightly better, but still not that useful.
+
+speaker-independent
+about possibilities of model
+how to deal with korean speech data
 
 
 
