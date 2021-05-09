@@ -5,7 +5,7 @@ date:   2021-05-07 17:51:35 +0900
 categories: MachineLearning
 ---
 
-&nbsp;&nbsp;I implementated 2D CNN LSTM for SER in Zhao et al. (2019) [1]. You can see full code in [here][2Dgithub]. This paper gives us intuitive model that extracts features of speech data with popular deep learning techniques: local features from CNN, and local features from RNN. 
+&nbsp;&nbsp;I implementated 2D CNN LSTM for Speech Emotion Recognition in Zhao et al. (2019) [1]. You can see full code in [here][2Dgithub]. This paper gives us intuitive model that extracts features of speech data with popular deep learning techniques: local features from CNN, and global features from LSTM. 
 
 [2Dgithub]: https://github.com/buaaaaang/20210507-2D-CNN-LSTM
 
