@@ -13,10 +13,11 @@ categories: SoftwareDesign
 
 &nbsp;&nbsp;To move quickly to other page, some PDF viewers uses bookmark. By setting bookmark and name of that bookmark on a page, we can move to that page by finding corresponding bookmark from the list. CaperDoc has 'advanced bookmark' in this sense. Using CapderDoc, one can make bookmark more quickly, find bookmark more easily, and can add connectivity information to bookmarks. Also, by aligning same pdf 'in row', one can see original page and moved page at the same time.
 
+&nbsp;&nbsp;CaperDoc support basic functions such as mouse scroll, zoom in/out, draw, select, and erase. Additionally, one can make bookmark by dragging while 'C' is pressed, make link and connection by mouse drag, delete button by clicking delete while button is clicked, move to left or right pdf by clicking left and right arrow button, and save changes by clicking 's'.
+
 &nbsp;&nbsp;You can see how CaperDoc works by this demo video:
 <p align="center">
-  <video width="70%" controls="controls" src="/assets/2022-01-03-CaperDoc/CaperDocDemo.mp4">
+  <video width="90%" controls="controls" src="/assets/2022-01-03-CaperDoc/CaperDocDemo.mp4">
 </p>
 
-&nbsp;&nbsp;As you can see in the video, CaperDoc support basic functions such as mouse scroll, zoom in/out, draw, select, and erase. Additionally, one can make bookmark by dragging while 'C' is pressed, make link and connection by mouse drag, and delete button by clicking delete while button is clicked. Plus, although this is not introduced in video, one can move to left or right pdf by clicking left and right arrow button, and save changes by clicking 's'.
 
