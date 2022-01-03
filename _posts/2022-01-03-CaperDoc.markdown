@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "CaperDoc : Interactive PDF viewer for math studying"
+date:   2022-01-03 19:42:00 +0900
+categories: SoftwareDesign
+---
+
+&nbsp;&nbsp;Me and my teammate made CaperDoc, an interactive PDF viewer for math studying. The program is made by java. You can see full code in [here][CaperDocGithub]. 
+
+[CaperDocGithub]: https://github.com/buaaaaang/20220103-CaperDoc
+
