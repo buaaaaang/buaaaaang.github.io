@@ -15,7 +15,6 @@ categories: SoftwareDesign
 
 &nbsp;&nbsp;You can see how CaperDoc works by this demo video:
 <p align="center">
-  <video width="460" src="/assets/2022-01-03-CaperDoc/CaperDocDemo.mp4">
+  <video width="100%" controls="controls" src="/assets/2022-01-03-CaperDoc/CaperDocDemo.mp4">
 </p>
-
 
