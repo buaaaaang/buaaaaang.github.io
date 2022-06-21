@@ -99,13 +99,13 @@ Conclusion
 ---
 In summary, we have reconstructed the whole code of Neural Parts: data preprocess, model network, loss/metric functions, and train/test pipeline. We experimented using DFAUST dataset with different number of primitives and observe similar results with the paper. We also conducted an ablation study by removing one of the five losses and could get the same qualitative result with paper.
 
-As mentioned in section 4.1, from the output mesh of the trained model, we could observe that the alignment of primitive differs every time we train a new model. This may have happened by too much freedom in the shape of primitives. We suggest that finding a primitive-based method in the middle with less complex primitive than neural parts but still more exquisite primitive than convexes would give us a better primitive-based representation.
+As mentioned before, from the output mesh of the trained model, we could observe that the alignment of primitive differs every time we train a new model. This may have happened by too much freedom in the shape of primitives. We suggest that finding a primitive-based method in the middle with less complex primitive than neural parts but still more exquisite primitive than convexes would give us a better primitive-based representation.
 
 Acknowledgments
 ---
 I worked on data preprocessing, building data loader, some loss/metric functions, and building an overall train/test pipeline, and debugging INN. Yuil studied and implemented feature extractor, Invertible Neural Network, and several loss functions and worked on ablation study.
 
-As described in section 2.1, to get DFAUST mesh, we used code in [here][dfaust]. To render mesh, we used render_dfaust.py in [here][hpgithub]. For labeling volume samples, we used inside_mesh.py in [here][ongithub]
+As described before, to get DFAUST mesh, we used code in [here][dfaust]. To render mesh, we used render_dfaust.py in [here][hpgithub]. For labeling volume samples, we used inside_mesh.py in [here][ongithub]
 
 [1] Despoina Paschalidou, Angelos Katharopoulos, Andreas Geiger, and Sanja Fidler. Neural parts: Learning expressive 3d shape abstractions with invertible neural networks, 2021.
 [2] Despoina Paschalidou, Ali Osman Ulusoy, and Andreas
