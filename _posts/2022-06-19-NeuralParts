@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Neural Parts implementation"
+date:   2022-06-22 19:42:00 +0900
+categories: MachineLearning
+---
+
+&nbsp;&nbsp;Me and my teammate implemented Neural Parts from scratch. The original paper (Neural Parts: Learning Expressive 3D Shape Abstractions with Invertible Neural Networks) can be found in [here][NeuralPartsPaper], our code can be found in [here][NeuralPartsGithub]. 
+
+[NeuralPartsPaper]: https://arxiv.org/abs/2103.10429
+[NeuralPartsGithub]: https://github.com/buaaaaang/NeuralParts
