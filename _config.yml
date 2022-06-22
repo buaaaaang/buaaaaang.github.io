@@ -51,8 +51,9 @@ plainwhite:
 #header_pages:
 # - about.md
 
-
 markdown: kramdown
+kramdown:
+    math_engine: katex
 highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
