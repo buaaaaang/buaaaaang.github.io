@@ -35,51 +35,9 @@ Network
 &nbsp;&nbsp;Feature extractor is implemented in feature_extractor.py. First, image of size 224 $\times$ 224 is given as input of pretrained ResNet-18 layer given by pytorch. By concatenating this with the primitives, which is initialized as a random numbers and have size 256, we can construct a feature(denoted as $Cm$ in the implementation) which decides the behaviour of INN. 
 
 &nbsp;&nbsp;Invertible Neural Network(INN) in NeuralParts resembles the network structure introduced in [INN paper][INNPaper][5]. INN is a stack of 4 conditional coupling layers, normalizer, and affine transformation layer. Each conditional coupling layer modifies one coordinate, and such coordinate is predefined. By passsing the other two coordinates to a network layer, we can decide how the modification will be done. For example, for the conditional coupling layer modifying $z$ coordinate, we have 
-
-dfdfdf$$\begin{aligned}
-E = mc^2
-\end{aligned}$$dfdfdfd
-
-$$
-E = mc^2
-$$
-
-$$\begin{equation}
-E = mc^2
-\end{equation}$$
-
-\\[ \begin{aligned}
-E = mc^2
-\end{aligned}\\]
-
-\[ \begin{aligned}
-E = mc^2
-\end{aligned}\]
-
-$\begin{aligned}
-E = mc^2
-\end{aligned}$
-
-$\begin{equation}
-E = mc^2
-\end{equation}$
-
-$\centering E = mc^2 $
-
-\\ \begin{aligned}
-E = mc^2
-\end{aligned}\\
-
-\ \begin{aligned}
-E = mc^2
-\end{aligned}\
-
 \begin{aligned}
-E = mc^2
+(x_o, y_o, z_o) = (x_i, y_i, t_\theta(x_i, y_i) + z_i \cdot exp(s_\theta(x_i, y_i)))
 \end{aligned}
-
-$(x_o, y_o, z_o) = (x_i, y_i, t_\theta(x_i, y_i) + z_i \cdot exp(s_\theta(x_i, y_i)))$
-
 Note that its inverse is 
 $$(x_i, y_i, z_i) = (x_o, y_o, (z_o - t_\theta(x_o, y_o)) \cdot exp(-s_\theta(x_o, y_o))$$ 
 so calculating inverse can be done by simply modifying the operation. 
