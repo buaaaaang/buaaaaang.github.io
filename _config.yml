@@ -51,6 +51,13 @@ plainwhite:
 #header_pages:
 # - about.md
 
+
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
 # Build settings
 theme: Minima
 
