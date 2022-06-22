@@ -3,6 +3,7 @@ layout: post
 title:  "Neural Parts implementation"
 date:   2022-06-22 19:42:00 +0900
 categories: MachineLearning
+published: true
 ---
 
 &nbsp;&nbsp; This is project of 2022 spring CS492A: Machine Learning for 3D Data. Me and my teammate implemented Neural Parts from scratch. The original paper[1] (Neural Parts: Learning Expressive 3D Shape Abstractions with Invertible Neural Networks) can be found in [here][NeuralPartsPaper]. Neural parts is one of the implicit representation methods, especially the primitive-based method. It introduces a new way of reconstructing the surface. The main idea is to use the learned shape as a primitive. Though there were many hidden details that was not introduced in the paper, we have successfully reconstructed the code and got a similar result to the paper for the DFAUST dataset. The code is available [here][NeuralPartsGithub].
@@ -23,7 +24,7 @@ Preprocessing
 
 &nbsp;&nbsp;Second, we should sample points and normals on the surface of the mesh. To get surface samples, we sample 100,000 points from the mesh, and during training, we randomly sample 2,000 of them to calculate the loss. To sample points and normals from mesh, we used a library named trimesh.
 
-&nbsp;&nbsp;Finally, we should sample points and labels uniformly distributed in the cube. The label is 1 if the point is inside the mesh and 0 if the point is outside the mesh. To get volume sample, we sample 100,000 points from space, and during training, we randomly sample 5,000 points, half of them inside the mesh and half of them outside the mesh, to calculate the loss. Objects are small compared to the cube, so we sample points inside the mesh with a higher probability so that sampled points have a similar number of in and out points. For unbiased loss, we should have to give weight to each point that is inversely proportional to its sampling probability. We referred to the code of [Occupancy Networks[4]][ongithub] for the code segment to determine if the point is inside the mesh or not.
+&nbsp;&nbsp;Finally, we should sample points and labels uniformly distributed in the cube. The label is 1 if the point is inside the mesh and 0 if the point is outside the mesh. To get volume sample, we sample 100,000 points from space, and during training, we randomly sample 5,000 points, half of them inside the mesh and half of them outside the mesh, to calculate the loss. Objects are small compared to the cube, so we sample points inside the mesh with a higher probability so that sampled points have a similar number of in and out points. For unbiased loss, we should have to give weight to each point that is inversely proportional to its sampling probability. We referred to the code of [Occupancy Networks][ongithub][4] for the code segment to determine if the point is inside the mesh or not.
 
 Network
 --
@@ -31,7 +32,7 @@ Network
 
 &nbsp;&nbsp;Feature extractor is implemented in feature_extractor.py. First, image of size 224 $\times$ 224 is given as input of pretrained ResNet-18 layer given by pytorch. By concatenating this with the primitives, which is initialized as a random numbers and have size 256, we can construct a feature(denoted as $Cm$ in the implementation) which decides the behaviour of INN. 
 
-&nbsp;&nbsp;Invertible Neural Network(INN) in NeuralParts resembles the network structure introduced in [INN paper[5]][INNPaper]. INN is a stack of 4 conditional coupling layers, normalizer, and affine transformation layer. Each conditional coupling layer modifies one coordinate, and such coordinate is predefined. By passsing the other two coordinates to a network layer, we can decide how the modification will be done. For example, for the conditional coupling layer modifying $z$ coordinate, we have \[(x_o, y_o, z_o) = (x_i, y_i, t_\theta(x_i, y_i) + z_i \cdot exp(s_\theta(x_i, y_i)))\] Note that its inverse is \[(x_i, y_i, z_i) = (x_o, y_o, (z_o - t_\theta(x_o, y_o)) \cdot exp(-s_\theta(x_o, y_o))\] so calculating inverse can be done by simply modifying the operation. 
+&nbsp;&nbsp;Invertible Neural Network(INN) in NeuralParts resembles the network structure introduced in [INN paper][INNPaper][5]. INN is a stack of 4 conditional coupling layers, normalizer, and affine transformation layer. Each conditional coupling layer modifies one coordinate, and such coordinate is predefined. By passsing the other two coordinates to a network layer, we can decide how the modification will be done. For example, for the conditional coupling layer modifying $z$ coordinate, we have \[(x_o, y_o, z_o) = (x_i, y_i, t_\theta(x_i, y_i) + z_i \cdot exp(s_\theta(x_i, y_i)))\] Note that its inverse is \[(x_i, y_i, z_i) = (x_o, y_o, (z_o - t_\theta(x_o, y_o)) \cdot exp(-s_\theta(x_o, y_o))\] so calculating inverse can be done by simply modifying the operation. 
 
 &nbsp;&nbsp;Note that in neuralParts, the homeomorphism between sphere and $m$th primitive is denoted as $\phi_\theta(\mathbf{x}, C_m)$, and implicit function representation of a surface is given as \[g^m(\mathbf{x}) = \Vert \phi_\theta^{-1}(\mathbf{x};C_m)\Vert - r\] where $r$ is a radius of sphere. Note that if we let $G$ by \[G(\mathbf{x}) = \min_{1 \le m \le n_p} g^m(\mathbf{x})\] then $G(\mathbf{x}) < 0$ means that the point $\mathbf{x}$ is in the inside of a shape; $G(\mathbf{x}) = 0$ means that $\mathbf{x}$ is on a boundary surface, and $G(\mathbf{x}) > 0$ says $\mathbf{x}$ is on the outside.
 
@@ -104,6 +105,8 @@ Acknowledgments
 
 &nbsp;&nbsp;As described before, to get DFAUST mesh, we used code in [here][dfaust]. To render mesh, we used render_dfaust.py in [here][hpgithub]. For labeling volume samples, we used inside_mesh.py in [here][ongithub]
 
+References
+---
 [1] Despoina Paschalidou, Angelos Katharopoulos, Andreas Geiger, and Sanja Fidler. Neural parts: Learning expressive 3d shape abstractions with invertible neural networks, 2021.
 [2] Despoina Paschalidou, Ali Osman Ulusoy, and Andreas Geiger. Superquadrics revisited: Learning 3d shape parsing beyond cuboids, 2019.
 [3] Federica Bogo, Javier Romero, Gerard Pons-Moll, and Michael J. Black. Dynamic FAUST: Registering human bodies in motion. In IEEE Conf. on Computer Vision and Pattern Recognition (CVPR), July 2017.
