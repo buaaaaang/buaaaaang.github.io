@@ -35,10 +35,10 @@ Network
 &nbsp;&nbsp;Feature extractor is implemented in feature_extractor.py. First, image of size 224 $\times$ 224 is given as input of pretrained ResNet-18 layer given by pytorch. By concatenating this with the primitives, which is initialized as a random numbers and have size 256, we can construct a feature(denoted as $Cm$ in the implementation) which decides the behaviour of INN. 
 
 &nbsp;&nbsp;Invertible Neural Network(INN) in NeuralParts resembles the network structure introduced in [INN paper][INNPaper][5]. INN is a stack of 4 conditional coupling layers, normalizer, and affine transformation layer. Each conditional coupling layer modifies one coordinate, and such coordinate is predefined. By passsing the other two coordinates to a network layer, we can decide how the modification will be done. For example, for the conditional coupling layer modifying $z$ coordinate, we have 
-$$\begin{aligned}
+
+dfdfdf$$\begin{aligned}
 E = mc^2
-\end{aligned}$$
-while sdf
+\end{aligned}$$dfdfdfd
 
 $$
 E = mc^2
@@ -48,7 +48,11 @@ $$\begin{equation}
 E = mc^2
 \end{equation}$$
 
-\[\begin{aligned}
+\\[ \begin{aligned}
+E = mc^2
+\end{aligned}\\]
+
+\[ \begin{aligned}
 E = mc^2
 \end{aligned}\]
 
