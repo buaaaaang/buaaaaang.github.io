@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "W-LDA implementation"
+title:  "dummy post"
 date:   2021-05-02 17:51:35 +0900
 categories: MachineLearning
 ---
