@@ -56,6 +56,18 @@ E = mc^2
 E = mc^2
 \end{aligned}\]
 
+$\begin{aligned}
+E = mc^2
+\end{aligned}$
+
+$\begin{dquation}
+E = mc^2
+\end{equation}$
+
+\\ \begin{aligned}
+E = mc^2
+\end{aligned}\\
+
 $(x_o, y_o, z_o) = (x_i, y_i, t_\theta(x_i, y_i) + z_i \cdot exp(s_\theta(x_i, y_i)))$
 
 Note that its inverse is 
