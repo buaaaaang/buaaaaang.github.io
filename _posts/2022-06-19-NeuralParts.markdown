@@ -39,19 +39,27 @@ Network
 (x_o, y_o, z_o) = (x_i, y_i, t_\theta(x_i, y_i) + z_i \cdot exp(s_\theta(x_i, y_i)))
 \end{aligned}
 Note that its inverse is 
-$$(x_i, y_i, z_i) = (x_o, y_o, (z_o - t_\theta(x_o, y_o)) \cdot exp(-s_\theta(x_o, y_o))$$ 
+\begin{aligned}
+(x_i, y_i, z_i) = (x_o, y_o, (z_o - t_\theta(x_o, y_o)) \cdot exp(-s_\theta(x_o, y_o))
+\end{aligned}
 so calculating inverse can be done by simply modifying the operation. 
 
 &nbsp;&nbsp;Note that in neuralParts, the homeomorphism between sphere and $m$th primitive is denoted as $\phi_\theta(\mathbf{x}, C_m)$, and implicit function representation of a surface is given as 
-$$g^m(\mathbf{x}) = \Vert \phi_\theta^{-1}(\mathbf{x};C_m)\Vert - r$$ 
+\begin{aligned}
+g^m(\mathbf{x}) = \Vert \phi_\theta^{-1}(\mathbf{x};C_m)\Vert - r
+\end{aligned}
 where $r$ is a radius of sphere. Note that if we let $G$ by 
-$$G(\mathbf{x}) = \min_{1 \le m \le n_p} g^m(\mathbf{x})$$ 
+\begin{aligned}
+G(\mathbf{x}) = \min_{1 \le m \le n_p} g^m(\mathbf{x})
+\end{aligned}
 then $G(\mathbf{x}) < 0$ means that the point $\mathbf{x}$ is in the inside of a shape; $G(\mathbf{x}) = 0$ means that $\mathbf{x}$ is on a boundary surface, and $G(\mathbf{x}) > 0$ says $\mathbf{x}$ is on the outside.
 
 Loss and metric
 --
 &nbsp;&nbsp;The loss of our network is defined as a weighted sum of five loss functions, as follows. 
-$$L = w_{rec}L_{rec} + w_{occ}L_{occ} + w_{norm}L_{norm} + \\w_{overlap}L_{overlap} + w_{cover}L_{cover}$$ 
+\begin{aligned}
+L = w_{rec}L_{rec} + w_{occ}L_{occ} + w_{norm}L_{norm} + \\w_{overlap}L_{overlap} + w_{cover}L_{cover}
+\end{aligned}
 The model takes points randomly sampled from a sphere during training, giving surface points of predicted primitives as an output. 
 $L_{rec}$ is called reconstruction loss, and it is bidirectional Chamfer loss between surface samples and the output point.
 
@@ -60,7 +68,9 @@ $L_{rec}$ is called reconstruction loss, and it is bidirectional Chamfer loss be
 &nbsp;&nbsp;$L_{norm}$ is called normal consistency loss, and it measures how the unit normal vector of target shape and prediction by INN are different. Note that the surface is represented as an implicit function $G(\mathbf{x}) = r$, so $L_{norm}$ is calculated as an average of the value of $1 - \langle \nabla G(\mathbf{x}) / \Vert \nabla G(\mathbf{x}) \Vert, \mathbf{n}\rangle$ where $\mathbf{x}$ varies on the sample points and $\mathbf{n}$ is a ground truth unit normal.
 
 &nbsp;&nbsp;$L_{overlap}$ is called overlapping loss, and it penalizes the overlapping of more than one primitives. For each sampled point $\mathbf{x}$, $L_{norm}$ can be calculated as an average of 
-$$max\left(0, \sum_{m = 1}^{n_p} \sigma(-g^m(\mathbf{x})/\tau) - \lambda\right)$$ 
+\begin{aligned}
+max\left(0, \sum_{m = 1}^{n_p} \sigma(-g^m(\mathbf{x})/\tau) - \lambda\right)
+\end{aligned}
 Here the $\sigma$ is a sigmoid function, $\tau$ determines the sharpness, and $\lambda$ determines how much to penalize. In the original paper, $\lambda$ is setted to 1.95 as default.
 
 &nbsp;&nbsp;$L_{cover}$ is called coverage loss, and it penalize too small primitives; so it maintains volume of each primitives. In the calculation of $L_{cover}$, the code of author is different from the formula in the Neural Parts.
@@ -78,7 +88,9 @@ Hidden details in Implementation
 &nbsp;&nbsp;In INN, the output point of the stack of 4 coupling layers is not directly a points in a primitives. Although it is not described in paper, additional normalizing process and affine transformtion is needed. Normalizing process scales the point, and the scaling factor is given by elu function. Affine transformation layer translates and rotates the output point, and translation amount and rotation matrix are determined by passing 2-layer MLP with ReLU nonlinearlity.
 
 &nbsp;&nbsp;Coverage loss design in github code was different from that of paper. Instead of the formula used in the original paper, author uses the formula 
-$$\sum_{m = 1}^{n_p}\sum_{\mathbf{x}} -\log(10^{-6} + \sigma(-g^m(\mathbf{x})/\tau)) )$$ 
+\begin{aligned}
+\sum_{m = 1}^{n_p}\sum_{\mathbf{x}} -\log(10^{-6} + \sigma(-g^m(\mathbf{x})/\tau)) 
+\end{aligned}
 as her code, where summation over $\mathbf{x}$ denotes the summation over the sampled points inside the primitives having least 10 values of $g^m$. Our code didn't work when we followed paper, so we followed the author's code instead.
 
 Experimental result
@@ -86,12 +98,14 @@ Experimental result
 &nbsp;&nbsp;We trained the model with different number of primitives.
 
 following table is result that we got:
+
 |            | 2     | 5     | 8     | 10    |
 |------------|-------|-------|-------|-------|
 | IoU        | 0.640 | 0.654 | 0.645 | 0.643 |
 | Chamfer-L1 | 0.109 | 0.092 | 0.089 | 0.089 |
 
 following is the result of original paper:
+
 |            | 2     | 5     | 8     | 10    |
 |------------|-------|-------|-------|-------|
 | IoU        | 0.675 | 0.673 | 0.676 | 0.678 |
