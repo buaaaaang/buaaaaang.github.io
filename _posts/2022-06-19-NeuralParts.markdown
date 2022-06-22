@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Neural Parts implementation"
-date:   2022-06-22 19:42:00 +0900
+date:   2022-06-19 19:42:00 +0900
 categories: MachineLearning
 published: true
 ---
