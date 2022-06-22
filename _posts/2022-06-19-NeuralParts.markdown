@@ -3,6 +3,7 @@ layout: post
 title:  "Neural Parts implementation"
 date:   2022-06-19 19:42:00 +0900
 categories: MachineLearning
+use_math: true
 ---
 
 &nbsp;&nbsp; This is project of 2022 spring CS492A: Machine Learning for 3D Data. 
