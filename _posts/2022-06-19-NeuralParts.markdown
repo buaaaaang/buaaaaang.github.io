@@ -36,6 +36,11 @@ Network
 
 &nbsp;&nbsp;Invertible Neural Network(INN) in NeuralParts resembles the network structure introduced in [INN paper][INNPaper][5]. INN is a stack of 4 conditional coupling layers, normalizer, and affine transformation layer. Each conditional coupling layer modifies one coordinate, and such coordinate is predefined. By passsing the other two coordinates to a network layer, we can decide how the modification will be done. For example, for the conditional coupling layer modifying $z$ coordinate, we have 
 
+$$\begin{aligned}
+E = mc^2
+\end{aligned}$$
+
+
 \\[(x_o, y_o, z_o) = (x_i, y_i, t_\theta(x_i, y_i) + z_i \cdot exp(s_\theta(x_i, y_i)))\\]
 
 Note that its inverse is 
