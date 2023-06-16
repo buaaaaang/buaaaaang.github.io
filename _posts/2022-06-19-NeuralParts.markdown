@@ -2,7 +2,7 @@
 layout: post
 title: "Neural Parts implementation"
 date: 2022-06-19 19:42:00 +0900
-categories: MachineLearning, 3D Generation
+categories: MachineLearning 3DGeneration
 use_math: true
 ---
 
