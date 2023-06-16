@@ -2,7 +2,7 @@
 layout: post
 title: "2D CNN LSTM for SER implementation"
 date: 2021-05-07 17:51:35 +0900
-categories: MachineLearning SER CNN LSTM
+categories: DeepLearning SER
 ---
 
 &nbsp;&nbsp;I implementated 2D CNN LSTM model for Speech Emotion Recognition Zhao et al. (2019) [1]. Full code is available [here][2dgithub]. This paper gives us intuitive model that extracts features of speech data with popular deep learning techniques: local features from CNN, and global features from LSTM.

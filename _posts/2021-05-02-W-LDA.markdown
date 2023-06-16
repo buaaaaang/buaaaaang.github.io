@@ -2,7 +2,7 @@
 layout: post
 title: "W-LDA implementation"
 date: 2021-05-02 17:51:35 +0900
-categories: MachineLearning LDA W-LDA
+categories: DeepLearning W-LDA
 ---
 
 &nbsp;&nbsp;This work was counducted during the fall of 2020 as part of a group study supervised by Prof. Chun at KAIST. Visit official [lab site][lab-site] for our presentation titled "LDA and Wassestein LDA". Full code is available on [github][github-wlda].
