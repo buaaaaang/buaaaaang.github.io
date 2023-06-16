@@ -1,43 +1,44 @@
 ---
 layout: post
-title:  "2D CNN LSTM for SER implementation"
-date:   2021-05-07 17:51:35 +0900
+title: "2D CNN LSTM for SER implementation"
+date: 2021-05-07 17:51:35 +0900
 categories: MachineLearning
 ---
 
-&nbsp;&nbsp;I implementated 2D CNN LSTM for Speech Emotion Recognition in Zhao et al. (2019) [1]. You can see full code in [here][2Dgithub]. This paper gives us intuitive model that extracts features of speech data with popular deep learning techniques: local features from CNN, and global features from LSTM. 
+&nbsp;&nbsp;I implementated 2D CNN LSTM model for Speech Emotion Recognition Zhao et al. (2019) [1]. Full code is available [here][2dgithub]. This paper gives us intuitive model that extracts features of speech data with popular deep learning techniques: local features from CNN, and global features from LSTM.
 
-[2Dgithub]: https://github.com/buaaaaang/20210507-2D-CNN-LSTM
+[2dgithub]: https://github.com/buaaaaang/20210507-2D-CNN-LSTM
 
-&nbsp;&nbsp;I also implented 1D CNN LSTM [here][1Dgithub], but paper mentioned that 2D CNN LSTM network 'outperforms' the traditional approaches, so I mainly focused on 2D model. 1D model use raw audio file as data, but 2D model preprocess data with log-mel spectogram. This is why it use 2D convolution. LFLB (local feature learning block) that consists convolutionar layer, batch normalization layer, exponential linear unit layer, and max pooling layer, was used to learn local features. LSTM was used to learn global feature. Dense layer was at the end of the model.
-My goal was to apply the model to Korean speech dataset. The data was from [here][link]. It is 감정 분류를 위한 대화 음성 데이터셋 of AIHUB.
+&nbsp;&nbsp;I also implented 1D CNN LSTM [here][1dgithub]. The paper highlights that the 2D CNN LSTM network 'outperforms' the traditional approaches, Therefore, I mainly focused on the 2D model. The 1D model use raw audio file as data, whereas 2D model preprocesses data with log-mel spectograms. This is why it employs 2D convolution. LFLB (local feature learning block) that consists convolutional layer, batch normalization layer, exponential linear unit layer, and max pooling layer, was used to capture local features. The LSTM was used to learn global features, followed by a dense layer at the end of the model.
 
-[1Dgithub]: https://github.com/buaaaaang/20210504-1D-CNN-LSTM
+&nbsp;&nbsp;My goal was to apply this model to Korean speech dataset sourced from AIHUB, specifically the 감정 분류를 위한 대화 음성 데이터셋. The data was from [here][link].
+
+[1dgithub]: https://github.com/buaaaaang/20210504-1D-CNN-LSTM
 [link]: https://aihub.or.kr/keti_data_board/language_intelligence
 
-&nbsp;&nbsp;Preprocessing was done by librosa. Result of preprocessing is data with 251 frames and 128 mel frequency bins. following picture is sample result of preprocessing
+&nbsp;&nbsp;Preprocessing was conducted using librosa library. The preprocessing stage resulted in data with 251 frames and 128 mel frequency bins. The accompanying picture illustrates a sample result of preprocessing step.
 
 <p align="center">
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/log_mel_sample.png">
 </p>
 
-&nbsp;&nbsp;Model was built with Keras, and hyperparamter tuning was done by KerasTuner. In this post, we'll consider accuracy on speaker-dependent experiments. Here is network's training accuracy and validation accuracy on Berlin EmoDB set.
+&nbsp;&nbsp;Model was built with Keras, and hyperparamter tuning was performed using KerasTuner. In this post, we will focus on the accuracy of speaker-dependent experiments. Below are the network's training accuracy and validation accuracy on Berlin EmoDB set.
 
 <p align="center">
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_original_B.png">
 </p>
 
-Validation accuracy was 0.73, which is quite similar to the result of [1]. (which was 0.76)
+Validation accuracy was 0.73, which is notably similar to the result of [1]. (which was 0.76)
 
-&nbsp;&nbsp;Speaker dependent experiment on Korean speech dataset was done. Here is graph of training accuracy and validation accuracy.
+&nbsp;&nbsp;Speaker dependent experiment on Korean speech dataset was conducted. Below is the graph of training accuracy and validation accuracy.
 
 <p align="center">
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_original_K.png">
 </p>
 
-Validation accuracy was 0.47, which was not as good as expected
+Validation accuracy was 0.47, which doesn't look usable.
 
-&nbsp;&nbsp;At this point, I pointed out suspicious part of this paper. The input data, which has size (128&times;251&times;1), pass through 4 LFLB layers, and become (1&times;1&times;128). Then, to connect this with LSTM layer,  reshape layer is needed to change shape into (1&times;128). Here, time information is not contained anymore, so recurrent neural network is called only once. This means there is no meaning of using LSTM layer. To check this, I replaced LSTM layer with two dense layers. Here is the result when changed model was applied to Berlin EmoDB dataset.
+&nbsp;&nbsp;At this point, I pointed out questionable aspect of the paper. The input data, with dimension of (128&times;251&times;1), passes through 4 LFLB layers, and become (1&times;1&times;128). In order to establish a connection with the subsequent LSTM layer, a reshape layer was used to transform the shape into (1&times;128). Here, due to the absence of time information in this reshaped representation, recurrent neural network is invoked only once. This makes utilization of the LSTM layer redundant. To confirm it, I replaced the LSTM layer with two dense layers. Below is the result when changed model was applied to Berlin EmoDB dataset.
 
 <p align="center">
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_dense_B.png">
@@ -45,13 +46,13 @@ Validation accuracy was 0.47, which was not as good as expected
 
 validation accuracy wa 0.76, which is higher than the original model, showing that LSTM layer in the original model is not meaningful.
 
-&nbsp;&nbsp;To use LSTM in meaningful way, I have to conserve time information of the data. I tried to change pooling layer to have smaller pooling size on frame-axis. When this modified model was applied to Berilin EmoDB dataset, I got better result(!) then the paper. As you can see in the graph below, validation accuracy increased to 0.80.
+&nbsp;&nbsp;In order to preserve the time information within the data and make effective use of the LSTM layer, I implemented a modification by adjusting the pooling layer to have a smaller pooling size along the frame-axis. When this modified model was applied to the Berilin EmoDB dataset, the obtained result surpassed those reported in the referenced paper. Validation accuracy increased to 0.80.
 
 <p align="center">
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_modified_B.png">
 </p>
 
-I guess performance will be even more better if more detailed hyperparameter tuning is done.
+Indeed, conducting a more detailed hyperparameter tuning process is likely to further enhance the model's performance.
 
 &nbsp;&nbsp;I applied modified model to Korean speech dataset.
 
@@ -59,14 +60,13 @@ I guess performance will be even more better if more detailed hyperparameter tun
   <img width="460" src="/assets/2021-05-07-2D-CNN-LSTM/acc-epoch_modified_K.png">
 </p>
 
-Validation accuracy was 0.49, which is slightly better, but still not that useful.
+Validation accuracy was 0.49, which is slightly better, but still not useful.
 
-&nbsp;&nbsp;We may guess that model is suitable only for German, but I think that is not all. Korean speech dataset I found is too vague that even I can't distinguish some emotions. The good news is that, this data has labeled not only '1st emotion', but also 2nd, 3rd, 4th, and 5th emotions. We may use those data to characterize emotions in dimensional emotional model.
+&nbsp;&nbsp;The Korean speech dataset I came across proved to be challenging. This is due to the ambiguity of certain emotions, making it difficult to distinguish them accurately even for human. However, a positive aspect of this dataset is that it provides not only the primary emotion label but also secondary, tertiary, quaternary, and quinary emotion labels. This additional information opens up possibilities for characterizing emotions within a dimensional emotional model, where multiple dimensions of emotion can be considered simultaneously.
 
-Overall, I successfully implemented the model in the paper, and I could modify it to be better model. Also, although applying the model to Korean speech dataset was not quite successful, It gave me a chance to think of other ways to break through.
+&nbsp;&nbsp;Overall, I successfully implemented the model in the paper, and I could modify it to be better model. There is still more work to do to apply this model for Korean speech dataset.
 
 <br/>
 <br/>
 
 [1] Zhao, J., Mao, X., & Chen, L. (2019). Speech emotion recognition using deep 1D & 2D CNN LSTM networks. Biomedical Signal Processing and Control, 47, 312-323.
-
