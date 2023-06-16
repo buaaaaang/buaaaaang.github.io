@@ -6,4 +6,6 @@ categories: IndustrialEngineering PlantSimulation RL
 use_math: true
 ---
 
+&nbsp;&nbsp; This project was done by KAIST AElab and GM. I participated as a member of KAIST AElab from 2021 summer to 2022 spring.
+
 https://ieeexplore.ieee.org/document/9926440
