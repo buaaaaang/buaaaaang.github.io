@@ -15,3 +15,5 @@ use_math: true
 &nbsp;&nbsp;In this project, we made the simulation of GM's matrix system plant, and explored the effects of various algorithms on production capacity analysis.
 
 &nbsp;&nbsp; My role in this project was to create simulations of the GM matrix system plant using Plant Simulation software. Additionally, I established a connection between the simulation and Python, enabling effective control of the plant through Python scripting,. I developed baseline algorithms, such as minimal time until processing and shortest traveling time, and also explored the application of reinforcement learning techniques to optimize the matrix system.
+
+&nbsp;&nbsp; Working in a single lab for approximately one year provided me with an invaluable experience that I deeply cherish. During this time, I had the privilege of collaborating with GM, which is a renowned international company. This experience opened my eyes to the vast possibilities and opportunities that exist beyond the boundaries of my home country.
