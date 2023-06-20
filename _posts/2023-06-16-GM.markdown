@@ -9,3 +9,9 @@ use_math: true
 &nbsp;&nbsp; This project was conducted by KAIST AElab and GM, with my participation as a member of KAIST AElab from 2021 summer to 2022 spring. The outcomes of our work have been published in the 2022 IEEE CASE conference. You can access the paper at [this link][paperlink]
 
 [paperlink]: https://ieeexplore.ieee.org/document/9926440
+
+&nbsp;&nbsp; As the demand for car production becomes diverse, the Matrix system can be an option by providing a flexible manufacturing environment. In this system, each autonomous mobile robot is assigned to a single car body and transports it among various workstations to complete the required operations. Since each car requires a different series of partially ordered operations, the crucial decision lies in assigning cars to appropriate workstations and operations, as it directly impacts the plant's capacity.
+
+&nbsp;&nbsp;In this project, we made the simulation of GM's matrix system plant, and explored the effects of various algorithms on production capacity analysis.
+
+&nbsp;&nbsp; My role in this project was to create simulations of the GM matrix system plant using Plant Simulation software. Additionally, I established a connection between the simulation and Python, enabling effective control of the plant through Python scripting,. I developed baseline algorithms, such as minimal time until processing and shortest traveling time, and also explored the application of reinforcement learning techniques to optimize the matrix system.
