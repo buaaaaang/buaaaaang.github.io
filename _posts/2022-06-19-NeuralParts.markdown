@@ -2,13 +2,13 @@
 layout: post
 title: "Neural Parts implementation"
 date: 2022-06-19 19:42:00 +0900
-categories: DeepLearning 3DGeneration
+categories: DeepLearning ImplicitRepresentation
 use_math: true
 ---
 
-&nbsp;&nbsp; This is project of 2022 spring CS492A: Machine Learning for 3D Data.
+&nbsp;&nbsp; This is project of 2022 spring CS492A: Machine Learning for 3D Data. Me and my teammate implemented Neural Parts from scratch. Our code is available [here][neuralpartsgithub].
 
-&nbsp;&nbsp;Me and my teammate implemented Neural Parts from scratch. The original paper[1] (Neural Parts: Learning Expressive 3D Shape Abstractions with Invertible Neural Networks) can be found [here][neuralpartspaper]. Neural parts is one of the implicit representation methods, especially the primitive-based method. It introduces a new way of reconstructing the surface. The main idea is to use the learned shape as a primitive. Though there were many hidden details that was not introduced in the paper, we have successfully reconstructed the code and got a similar result to the paper for the DFAUST dataset. The code is available [here][neuralpartsgithub].
+&nbsp;&nbsp; Neural parts is one of the implicit representation methods, especially the primitive-based method. It introduces a new way of reconstructing the surface. The main idea is to use the learned shape as a primitive. The original paper[1] (Neural Parts: Learning Expressive 3D Shape Abstractions with Invertible Neural Networks) can be found [here][neuralpartspaper]. Though there were many hidden details that was not introduced in the paper, we have successfully reconstructed the code and got a similar result to the paper for the DFAUST dataset.
 
 ## Introduction
 
