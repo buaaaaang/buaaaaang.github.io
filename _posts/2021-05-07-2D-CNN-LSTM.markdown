@@ -15,7 +15,7 @@ categories: DeepLearning SER
 
 &nbsp;&nbsp;My goal was to apply this model to Korean speech dataset sourced from AIHUB, specifically the 감정 분류를 위한 대화 음성 데이터셋. The data was from [here][link].
 
-[1dgithub]: https://github.com/buaaaaang/20210504-1D-CNN-LSTM
+[1dgithub]: https://github.com/buaaaaang/1D-CNN-LSTM
 [link]: https://aihub.or.kr/keti_data_board/language_intelligence
 
 &nbsp;&nbsp;Preprocessing was conducted using librosa library. The preprocessing stage resulted in data with 251 frames and 128 mel frequency bins. The accompanying picture illustrates a sample result of preprocessing step.
