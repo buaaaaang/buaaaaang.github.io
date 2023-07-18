@@ -9,7 +9,7 @@ categories: DeepLearning SER
 
 &nbsp;&nbsp;This paper gives us intuitive model that extracts features of speech data with popular deep learning techniques: local features from CNN, and global features from LSTM.
 
-[2dgithub]: https://github.com/buaaaaang/20210507-2D-CNN-LSTM
+[2dgithub]: https://github.com/buaaaaang/2D-CNN-LSTM
 
 &nbsp;&nbsp;I also implented 1D CNN LSTM [here][1dgithub]. The paper highlights that the 2D CNN LSTM network 'outperforms' the traditional approaches, Therefore, I mainly focused on the 2D model. The 1D model use raw audio file as data, whereas 2D model preprocesses data with log-mel spectograms. This is why it employs 2D convolution. LFLB (local feature learning block) that consists convolutional layer, batch normalization layer, exponential linear unit layer, and max pooling layer, was used to capture local features. The LSTM was used to learn global features, followed by a dense layer at the end of the model.
 
