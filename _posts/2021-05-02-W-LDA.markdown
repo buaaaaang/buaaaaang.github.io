@@ -8,7 +8,7 @@ categories: DeepLearning W-LDA
 &nbsp;&nbsp;This work was counducted during the fall of 2020 as part of a group study supervised by Prof. Chun at KAIST. Visit official [lab site][lab-site] for our presentation titled "LDA and Wassestein LDA". Full code is available on [github][github-wlda].
 
 [lab-site]: https://chunhyonho.github.io/Group-study/Journal_club/
-[github-wlda]: https://github.com/bungbungbung/20201201-W-LDA/tree/main
+[github-wlda]: https://github.com/buaaaaang/W-LDA
 
 &nbsp;&nbsp;Our implementation focused on W-LDA model proposed in Nan et al. (2019) [1]. LDA (Latent Dirichlet Allocation) is the most widely utilized probabilistic topic model. It it is hard to use VAE directly to LDA because LDA use Direchlet distribution, which does not belong to location-scale family. This paper use WAE model proposed in [2] to develop the W-LDA model, incorporating a Dirichlet prior on the latent document topic vectors.
 
